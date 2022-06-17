@@ -68,7 +68,7 @@ const IndexPage = () => {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Cart with Redux | Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
