@@ -40,8 +40,7 @@ describe("test page 2 ", () => {
         <Page2 />
       </Provider>
     );
-    const linkElement = screen.getByText(/adel/i);
-    expect(linkElement).toBeInTheDocument();
+
     render(
       <Provider store={store}>
         <Home />
