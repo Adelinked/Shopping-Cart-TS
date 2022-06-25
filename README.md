@@ -21,4 +21,8 @@ Here is a list of the technologies used in this project.
 
 - [with-redux-wrapper](https://github.com/vercel/next.js/tree/canary/examples/with-redux-wrapper) - An example on how you can use redux that also works with our universal rendering approach.
 
-- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-redux-wrapper) - A really simple project that shows the usage of Next.js with TypeScript..
+- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-redux-wrapper) - A really simple project that shows the usage of Next.js with TypeScript.
+
+- [with-jest](https://github.com/vercel/next.js/tree/canary/examples/with-jest) - This example shows how to configure Jest to work with Next.js.
+
+- [Testing Serverless Functions with Jest & Next.js API Routes](https://www.youtube.com/watch?v=2HFEFz7LWdE) - Learn how to use Jest to test serverless functions using Next.js API routes.
