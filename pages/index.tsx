@@ -9,8 +9,13 @@ import { useAppDispatch } from "../store/store";
 import { setCount } from "../store/actions/countAction";
 import { setCart, fetchItems } from "../store/actions/cartAction";
 import { countInter, cartInter } from "../interfaces";
+import { Item } from "../interfaces";
+import { testData } from "../data";
+
 const IndexPage = () => {
-  const [cartLocal, setCartLocal] = useState([]);
+  const [cartLocal, setCartLocal] = useState(
+    process.env.NODE_ENV === "test" ? testData : []
+  );
   const [loading, setLoading] = useState(false);
   const url = "./api/items";
   // Redux part
@@ -21,18 +26,22 @@ const IndexPage = () => {
   useEffect(() => {
     let controller = new AbortController();
     (async () => {
-      setLoading(true);
-      const response = await fetch(url, { signal: controller.signal });
-      const cartLocal = await response.json();
-      setCartLocal(cartLocal);
-      controller = null;
-      setLoading(false);
+      try {
+        const response = await fetch(url, { signal: controller.signal });
+        setLoading(true);
+        let cartLocal: Item[];
+        cartLocal = await response.json();
+        setCartLocal(cartLocal);
+        controller = null;
+        setLoading(false);
+      } catch (e) {}
     })();
-    if (count.count === 0) {
+    if (process.env.NODE_ENV !== "test" && count.count === 0) {
       // to fetch data only once
       dispatch(fetchItems());
       dispatch(setCount("COUNT_INC"));
     }
+    //console.log("ENV= ", process.env.NODE_ENV);
     return () => controller?.abort();
   }, []);
   const handleInc = (id: string) => {
@@ -74,23 +83,32 @@ const IndexPage = () => {
       <main>
         <div className="comparaison">
           <div className="itemsCont">
-            <Nav items={cartLocal} title="With useState" />
+            <Nav
+              items={cartLocal}
+              title="With useState"
+              testId="testCountState"
+            />
             {!loading ? (
               <>
-                {cartLocal.map((i) => (
+                {cartLocal.map((i, index) => (
                   <ItemComp
                     key={i.id}
                     item={i}
                     handleInc={handleInc}
                     handleDec={handleDec}
                     handleRemove={handleRemove}
+                    testId={"stateItem" + index}
                   />
                 ))}
                 {cartLocal.length > 0 && <hr className="hr" />}
                 <div className="totalClear">
-                  <Total items={cartLocal} />
+                  <Total items={cartLocal} testId="testTotalState" />
                   {cartLocal.length > 0 && (
-                    <button onClick={handleClear} className="clearButton">
+                    <button
+                      onClick={handleClear}
+                      className="clearButton"
+                      data-testid="clearButtonState"
+                    >
                       Clear cart
                     </button>
                   )}
@@ -109,23 +127,25 @@ const IndexPage = () => {
             )}
           </div>
           <div className="itemsCont">
-            <Nav items={cart.cart} title="With Redux" />
-            {cart.cart.map((i) => (
+            <Nav items={cart.cart} title="With Redux" testId="testCountRedux" />
+            {cart.cart.map((i, index) => (
               <ItemComp
                 key={i.id}
                 item={i}
                 handleInc={() => dispatch(setCart("INC_ITEM", i.id))}
                 handleDec={() => dispatch(setCart("DEC_ITEM", i.id))}
                 handleRemove={() => dispatch(setCart("REMOVE_ITEM", i.id))}
+                testId={"reduxItem" + index}
               />
             ))}
             {cart.cart.length > 0 && <hr className="hr" />}
             <div className="totalClear">
-              <Total items={cart.cart} />
+              <Total items={cart.cart} testId="testTotalRedux" />
               {cart.cart.length > 0 && (
                 <button
                   onClick={() => dispatch(setCart("CLEAR_CART", 0))}
                   className="clearButton"
+                  data-testid="clearButtonRedux"
                 >
                   Clear cart
                 </button>
@@ -133,7 +153,7 @@ const IndexPage = () => {
             </div>
           </div>
         </div>
-        <Link href="/page2">
+        <Link data-testid="page2Link" href="/page2">
           <a style={{ textAlign: "center", marginBottom: "20px" }}>
             Go to page II to test
           </a>
