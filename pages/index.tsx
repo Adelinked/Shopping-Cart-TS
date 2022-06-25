@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Nav } from "../components/Nav";
 import { ItemComp } from "../components/ItemComp";
 import { Total } from "../components/Total";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import { setCount } from "../store/actions/countAction";
 import { setCart, fetchItems } from "../store/actions/cartAction";
