@@ -55,7 +55,6 @@ export function PageTwo(props) {
       <main>
         <div className="comparaison">
           <div className="itemsCont">
-            <a href="/">Adel</a>
             <Nav
               items={cartLocal}
               title="With useState"
