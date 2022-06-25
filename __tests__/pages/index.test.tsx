@@ -16,7 +16,7 @@ describe("Test index page", () => {
 
       const reduxCartCount = screen.getByTestId("testCountRedux");
       expect(reduxCartCount).toBeInTheDocument();
-      expect(reduxCartCount.innerHTML).toEqual("10");
+      expect(reduxCartCount.innerHTML).toEqual("100");
     });
 
     test("Test Total redux", () => {
