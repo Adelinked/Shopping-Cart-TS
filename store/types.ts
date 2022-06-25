@@ -1,0 +1,9 @@
+export const INC = "COUNT_INC";
+export const DEC = "COUNT_DEC";
+export const RESET = "COUNT_RESET";
+export const INC_ITEM = "INC_ITEM";
+export const DEC_ITEM = "DEC_ITEM";
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export const LOADING_CART = "LOADING_CART";
+export const FETCH_ITEMS = "FETCH_ITEMS";
+export const CLEAR_CART = "CLEAR_CART";
