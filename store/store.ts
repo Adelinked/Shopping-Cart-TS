@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { testData } from "../data";
 // initial states here
 let initalState = {};
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV === "test") {
   //for test purposes
   initalState = { cart: { cart: testData, loading: false } };
 }
