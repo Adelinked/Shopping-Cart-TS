@@ -1,7 +1,7 @@
 # Shopping Cart application developed with Next.js React framework using TypeScript
 
 This project contains the source code of a shopping cart using Redux for global state managemnent. Same as https://github.com/Adelinked/Cart however the actual version is with typescript.
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/03e60fa9-9fb4-4164-9eb8-c6fea5883470/deploy-status)](https://app.netlify.com/sites/cart-usestate-redux-typescript/deploys)
 Here are some screenshots of the application:
 ![App Screenshot](https://i.postimg.cc/bNd219Yc/Screenshot-3.png)
 
